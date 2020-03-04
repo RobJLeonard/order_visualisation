@@ -1,0 +1,13 @@
+.desk {
+    flex-shrink: 0;
+    width: 300px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.card-containers {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    width: 100%;
+}
