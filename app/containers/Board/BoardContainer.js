@@ -66,7 +66,7 @@ export default class BoardContainer extends Component {
           onError={this.handleOnError}
           configOptions={config}
         />
-        <button style={{ margin: 10 }} onClick={this.handleImportOffer}>Import</button>
+        <button onClick={this.handleImportOffer}>Import</button>
         <div>
           <CardList orders={data} />
         </div>

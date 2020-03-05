@@ -9,10 +9,13 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 18px;
+    color: #4d4d4d;
   }
 
   body.fontLoaded {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    
   }
 
   #app {

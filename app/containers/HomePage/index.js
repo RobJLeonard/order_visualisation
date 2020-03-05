@@ -8,13 +8,15 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import BoardContainer  from "../Board/BoardContainer";
+import BoardContainer from "../Board/BoardContainer";
 
 export default function HomePage() {
   return (
-    <h1 style={{margin:15}}>
-      <FormattedMessage {...messages.header} />
-      <BoardContainer/>
-    </h1>
+    <div>
+      <h1>
+        <FormattedMessage {...messages.header} />
+      </h1>
+      <BoardContainer />
+    </div>
   );
 }
