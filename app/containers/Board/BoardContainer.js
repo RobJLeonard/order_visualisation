@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { CSVReader } from 'react-papaparse'
 import CardContainer from '../Card/CardContainer'
-import Card from '../../components/Card'
 import '../styles/CardContainer.css'
-import getWeekNo from '../../utils/weekNo'
+import getWeekNo, { formatDate } from '../../utils/weekNo'
 
 
 const config = {
@@ -38,13 +37,15 @@ export default class BoardContainer extends Component {
   }
 
   handleImportOffer = () => {
-    this.fileInput.current.click()
+    this.fileInput.current.click();
+    this.forceUpdate();
   }
 
   parseToWeeks = (orders) => {
-    let weeks = new Array(52).fill(0).map(() => new Array());
+    // 52 and a bit weeks in a year hence 53
+    let weeks = new Array(53).fill(0).map(() => new Array());
     orders.forEach(order => {
-      let orderDueDate = Date.parse(order.date)
+      let orderDueDate = formatDate(order.date)
       orderDueDate = new Date(orderDueDate);
       let weekNo = getWeekNo(orderDueDate)
       if (!Number.isNaN(weekNo[1]))
@@ -65,7 +66,7 @@ export default class BoardContainer extends Component {
           onError={this.handleOnError}
           configOptions={config}
         />
-        <button style={{margin:10}} onClick={this.handleImportOffer}>Import</button>
+        <button style={{ margin: 10 }} onClick={this.handleImportOffer}>Import</button>
         <div>
           <CardList orders={data} />
         </div>
@@ -77,7 +78,7 @@ export default class BoardContainer extends Component {
 function CardList(props) {
   const orders = props.orders;
   let listItems = [];
-  for (let i = 0; i < 52; i++) {
+  for (let i = 0; i < 53; i++) {
     console.log()
     if (orders[i])
       listItems.push(<CardContainer orders={orders[i]} week={i + 1} />);

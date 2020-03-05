@@ -2,7 +2,10 @@
     flex-shrink: 0;
     width: 300px;
     border-radius: 10px;
-    margin-left: 10px;
+    margin: 10px;
+    padding: 8px;
+    background-color: #a9a9a9;
+    box-shadow: 4px 6px #808080;
 }
 
 .card-containers {
@@ -10,4 +13,9 @@
     flex-direction: row;
     overflow-x: scroll;
     width: 100%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.card-containers::-webkit-scrollbar {
+    display: none;
 }

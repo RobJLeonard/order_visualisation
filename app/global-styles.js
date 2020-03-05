@@ -16,7 +16,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    background-color: #fafafa;
+    background-color: #0079bf;
+    overflow: hidden; /* Hide scrollbars */
     min-height: 100%;
     min-width: 100%;
   }

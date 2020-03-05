@@ -12,7 +12,7 @@ import BoardContainer  from "../Board/BoardContainer";
 
 export default function HomePage() {
   return (
-    <h1>
+    <h1 style={{margin:15}}>
       <FormattedMessage {...messages.header} />
       <BoardContainer/>
     </h1>
