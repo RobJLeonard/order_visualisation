@@ -1,5 +1,4 @@
 .item {
-    background-color: #fff; /*rgb(214, 206, 206);   #fff  */
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
@@ -35,10 +34,11 @@
 }
 
 .item-customer {
-    font-size: medium;
+    font-size: large;
     font-weight: 700;
     white-space: normal;
     width: 100%;
+    padding: 5px;
 }
 
 .item-partNo {
@@ -61,7 +61,7 @@
 .item-traffic-light{
     display: flex;
     justify-content: center;
-    min-width: 35%;
+    min-width: 33.33%;
 }
 
 .traffic-light-container{
@@ -70,7 +70,8 @@
     justify-content: center;
     width: 50px;
     height: 50px;
-    background-color: rgb(43, 41, 41);
+    background-color: rgb(78, 76, 76);
+    border: 2px solid rgb(54, 54, 54);
     border-radius: 5px;
 }
 
@@ -79,4 +80,6 @@
     width: 60%;
     height: 60%;
     border-radius: 60%;
+    border: 1px solid rgb(61, 61, 61);
+
 }

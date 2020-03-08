@@ -12,10 +12,14 @@ export default class CardContainer extends Component {
 
     render() {
         let orders = this.props.orders;
-        console.log(orders)
+        let colour, borderColor;
+        if (this.props.colour) {
+            colour = this.props.colour[0];
+            borderColor = this.props.colour[1];
+        }
         return (
-            <div className="desk" >
-                <div className="desk-head">
+            <div style={{ backgroundColor: colour }} className="desk" >
+                <div style={{ borderColor }} className="desk-head">
                     <div className="desk-name">Week {this.props.week} </div>
                 </div>
                 {orders.map((order, i) => <Card item={order} key={i} />)}

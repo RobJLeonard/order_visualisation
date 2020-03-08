@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useRef, useEffect } from 'react'
 import { CSVReader } from 'react-papaparse'
 import CardContainer from '../Card/CardContainer'
 import '../styles/CardContainer.css'
@@ -21,19 +21,20 @@ export default class BoardContainer extends Component {
     // this.stopScrolling = this.stopScrolling.bind(this);
     // this.startScrolling = this.startScrolling.bind(this);
     this.state = { isScrolling: false, orders: [], weeks: [] };
-    this.fileInput = React.createRef()
+    this.fileInput = React.createRef();
   }
 
   handleReadCSV = (data) => {
-    console.log('--------------------------------------------------')
-    console.log(data.data)
-    console.log('--------------------------------------------------')
-    //this.setState({ orders: data.data })
-    this.parseToWeeks(data.data)
+    // console.log('--------------------------------------------------')
+    // console.log(data.data)
+    // console.log('--------------------------------------------------')
+    // //this.setState({ orders: data.data })
+    this.parseToWeeks(data.data);
+    this.scrollToMyRef();
   }
 
   handleOnError = (err, file, inputElem, reason) => {
-    console.log(err)
+    console.log(err);
   }
 
   handleImportOffer = () => {
@@ -54,6 +55,8 @@ export default class BoardContainer extends Component {
     this.setState({ orders: weeks })
   }
 
+
+
   render() {
     let data = this.state.orders ? this.state.orders : [];
     console.log(data)
@@ -66,7 +69,7 @@ export default class BoardContainer extends Component {
           onError={this.handleOnError}
           configOptions={config}
         />
-        <button onClick={this.handleImportOffer}>Import</button>
+        <button style={{ marginLeft: 10 }} onClick={this.handleImportOffer}>Import</button>
         <div>
           <CardList orders={data} />
         </div>
@@ -75,14 +78,27 @@ export default class BoardContainer extends Component {
   }
 }
 
+
 function CardList(props) {
+  const myRef = useRef(null);
+
   const orders = props.orders;
   let listItems = [];
+  let now = new Date()
+  let thisWeekNo = getWeekNo(now)
+  let thisWkColours = ["#5eb03c", "#457d2e"];
+
+
   for (let i = 0; i < 53; i++) {
-    console.log()
-    if (orders[i])
-      listItems.push(<CardContainer orders={orders[i]} week={i + 1} />);
+    if (orders[i]) {
+      // Highlight current week
+      if ((i + 1) == thisWeekNo[1])
+        listItems.push(<CardContainer ref={myRef} colour={thisWkColours} orders={orders[i]} week={i + 1} />);
+      else
+        listItems.push(<CardContainer orders={orders[i]} week={i + 1} />);
+    }
   }
+
   return (
     <ul className="card-containers">{listItems}</ul>
   );
